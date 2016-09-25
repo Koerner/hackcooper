@@ -80,7 +80,7 @@ void loop() {
   float x_vel = bend_vel / 1000.00 * (-1);
   if (x >= 1.5)
     {
-      x = 3.0 - x;
+      x = x - 3.0;
     }
     float a_vel = x * 1.00;
 
