@@ -4,7 +4,8 @@
 #include "MMA7660.h" //Acc Sensor library
 
 bool debug = FALSE;
-bool debug2 = TRUE;
+bool debug2 = FALSE;
+bool debug3 = TRUE;
 
 int motor1 = A7; //left motor1
 int motor2 = A6; //right motor
@@ -84,14 +85,22 @@ void loop() {
     }
     float a_vel = x * 1.00;
 
-  if(debug2)
+  if(debug3)
   {
     Serial.print("VEL values: X: ");
     Serial.print(x_vel);
     Serial.print(" TURN angle: A: ");
     Serial.println(a_vel);
   }
+  float left_vel = 23.0 * x_vel - a_vel * 15 + 10;
+  float right_vel = 23.0 * x_vel + a_vel * 15 + 10;
 
-  analogWrite(motor1, 38 * x_vel);
+  analogWrite(motor1, left_vel);
+  analogWrite(motor1, right_vel);
+
+  Serial.print("left: ");
+  Serial.print(left_vel);
+  Serial.print("right: ");
+  Serial.println(right_vel);
 
 }
