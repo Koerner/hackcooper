@@ -37,7 +37,7 @@ void loop() {
   // read Acc values and debug
   float x,y,z;
   delay(100);  //There will be new values every 100ms
-  accelemeter.getAcclemeter(&x,&y,&z);
+  accelemeter.getAcceleration(&x,&y,&z);
   if(debug2)
   {
   Serial.print("Values: ");
@@ -78,7 +78,11 @@ void loop() {
   // Move car
 
   float x_vel = bend_vel / 1000.00 * (-1);
-  float a_vel = x * 10.00;
+  if (x >= 1.5)
+    {
+      x = 3.0 - x;
+    }
+    float a_vel = x * 1.00;
 
   if(debug2)
   {
