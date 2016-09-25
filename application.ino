@@ -93,8 +93,8 @@ void loop() {
     Serial.print(" TURN angle: A: ");
     Serial.println(a_vel);
   }
-  float left_vel = 150 * x_vel - a_vel * 150 + 100;
-  float right_vel = 150.0 * x_vel + a_vel * 150 + 100;
+  float left_vel = 200 * x_vel - a_vel * 200 + 50;
+  float right_vel = 200.0 * x_vel + a_vel * 200 + 50;
 
   if (left_vel > voltage_limiter)
   {left_vel = voltage_limiter;}
