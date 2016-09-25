@@ -6,6 +6,7 @@
 bool debug = FALSE;
 bool debug2 = FALSE;
 bool debug3 = TRUE;
+int voltage_limiter = 255;
 
 int motor1 = A7; //left motor1
 int motor2 = A6; //right motor
@@ -92,13 +93,13 @@ void loop() {
     Serial.print(" TURN angle: A: ");
     Serial.println(a_vel);
   }
-  float left_vel = 23.0 * x_vel - a_vel * 15 + 10;
-  float right_vel = 23.0 * x_vel + a_vel * 15 + 10;
+  float left_vel = 150 * x_vel - a_vel * 150 + 100;
+  float right_vel = 150.0 * x_vel + a_vel * 150 + 100;
 
-  if (left_vel > 36)
-  {left_vel = 36;}
-  if (right_vel > 36)
-  {right_vel = 36;}
+  if (left_vel > voltage_limiter)
+  {left_vel = voltage_limiter;}
+  if (right_vel > voltage_limiter)
+  {right_vel = voltage_limiter;}
 
   analogWrite(motor1, left_vel);
   analogWrite(motor2, right_vel);
