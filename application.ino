@@ -95,8 +95,13 @@ void loop() {
   float left_vel = 23.0 * x_vel - a_vel * 15 + 10;
   float right_vel = 23.0 * x_vel + a_vel * 15 + 10;
 
+  if (left_vel > 36)
+  {left_vel = 36;}
+  if (right_vel > 36)
+  {right_vel = 36;}
+
   analogWrite(motor1, left_vel);
-  analogWrite(motor1, right_vel);
+  analogWrite(motor2, right_vel);
 
   Serial.print("left: ");
   Serial.print(left_vel);
