@@ -3,6 +3,8 @@
 #include "application.h" //
 #include "MMA7660.h" //Acc Sensor library
 
+SYSTEM_MODE(SEMI_AUTOMATIC);
+
 bool debug = FALSE;
 bool debug2 = FALSE;
 bool debug3 = TRUE;
@@ -18,6 +20,7 @@ int calibBending = 0;
 MMA7660 accelemeter;
 
 void setup() {
+  attachInterrupt(D4, connect, FALLING);
   pinMode(motor1, OUTPUT);
   pinMode(motor2, OUTPUT);
   Serial.begin(9600);
@@ -110,3 +113,8 @@ void loop() {
   Serial.println(right_vel);
 
 }
+
+void connect() {
+  if (Spark.connected() == false) {
+    Spark.connect();}
+  }
